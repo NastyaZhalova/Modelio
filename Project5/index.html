@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АИС «Создание расписания занятий»</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="main-header">
+        <div class="logo">АИС «Расписание»</div>
+        <nav class="main-nav">
+            <!-- Кнопки-ссылки для демонстрации разных экранов (SPA) -->
+            <a href="#screen-prefs" class="nav-btn">Мои пожелания</a>
+            <a href="#screen-admin" class="nav-btn">Админка</a>
+            <a href="#screen-error" class="nav-btn">Ошибка</a>
+            <a href="#screen-auth" class="nav-btn">Вход</a>
+        </nav>
+        <div class="user-profile">
+            <span>Иванов И.И. (Преподаватель)</span>
+            <button class="btn-logout">Выйти</button>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="container">
+        
+        <!-- ЭКРАН 1: Главная (Список пожеланий) -->
+        <section class="screen" id="screen-prefs">
+            <div class="screen-header">
+                <h1>Мои пожелания по времени</h1>
+                <!-- Ссылка на модальное окно добавления -->
+                <a href="#screen-modal" class="btn-primary" style="text-decoration:none; display:inline-block;">+ Добавить пожелание</a>
+            </div>
+            
+            <!-- Фильтры и сортировка -->
+            <div class="filters">
+                <input type="text" placeholder="Поиск по дню недели...">
+                <select>
+                    <option>Сортировка: по важности</option>
+                    <option>Сортировка: по времени</option>
+                </select>
+            </div>
+
+            <!-- Сетка карточек -->
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Вторник</h3>
+                    <p>Время: 10:00 - 11:30</p>
+                    <p>Важность: <strong>Высокая (3)</strong></p>
+                    <div class="card-actions">
+                        <button class="btn-edit">Редактировать</button>
+                        <button class="btn-delete">Удалить</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Четверг</h3>
+                    <p>Время: 14:00 - 15:30</p>
+                    <p>Важность: <strong>Средняя (2)</strong></p>
+                    <div class="card-actions">
+                        <button class="btn-edit">Редактировать</button>
+                        <button class="btn-delete">Удалить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Пагинация -->
+            <div class="pagination">
+                <button class="btn-page">Предыдущая</button>
+                <span>Страница 1 из 5</span>
+                <button class="btn-page">Следующая</button>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 2: Модальное окно добавления -->
+        <section class="screen" id="screen-modal">
+            <div class="modal">
+                <h2>Добавить пожелание</h2>
+                <form>
+                    <label>День недели:
+                        <select>
+                            <option>Понедельник</option>
+                            <option>Вторник</option>
+                            <option>Среда</option>
+                            <option>Четверг</option>
+                            <option>Пятница</option>
+                            <option>Суббота</option>
+                        </select>
+                    </label>
+                    <label>Время начала:
+                        <input type="time">
+                    </label>
+                    <label>Время окончания:
+                        <input type="time">
+                    </label>
+                    <label>Степень важности:
+                        <select>
+                            <option>1 - Низкая</option>
+                            <option>2 - Средняя</option>
+                            <option>3 - Высокая</option>
+                        </select>
+                    </label>
+                    <div class="modal-actions">
+                        <!-- Возврат на главную -->
+                        <a href="#screen-prefs" class="btn-primary" style="text-decoration:none; display:inline-block; text-align:center;">Сохранить</a>
+                        <a href="#screen-prefs" class="btn-secondary" style="text-decoration:none; display:inline-block; text-align:center;">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 3: Админка (Управление пользователями) -->
+        <section class="screen" id="screen-admin">
+            <div class="screen-header">
+                <h1>Управление пользователями</h1>
+                <button class="btn-primary">+ Добавить пользователя</button>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Роль</th>
+                        <th>Логин</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Иванов Иван</td>
+                        <td>Преподаватель</td>
+                        <td>ivanov</td>
+                        <td><button class="btn-delete">Удалить</button></td>
+                    </tr>
+                    <tr>
+                        <td>Петров Петр</td>
+                        <td>Менеджер</td>
+                        <td>petrov</td>
+                        <td><button class="btn-delete">Удалить</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ЭКРАН 4: Ошибка -->
+        <section class="screen" id="screen-error">
+            <div class="error-box">
+                <h2>Ошибка!</h2>
+                <p>Невозможно создать расписание. Проверьте входные данные или пожелания преподавателей.</p>
+                <a href="#screen-prefs" class="btn-primary" style="text-decoration:none; display:inline-block;">Вернуться назад</a>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 5: Авторизация -->
+        <section class="screen" id="screen-auth">
+            <div class="modal" style="margin: 0 auto;">
+                <h2>Вход в систему</h2>
+                <form>
+                    <label>Логин:
+                        <input type="text" placeholder="Введите логин">
+                    </label>
+                    <label>Пароль:
+                        <input type="password" placeholder="Введите пароль">
+                    </label>
+                    <div class="modal-actions">
+                        <a href="#screen-prefs" class="btn-primary" style="text-decoration:none; display:inline-block; text-align:center;">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="main-footer">
+        <p>© 2026 АИС «Создание расписания занятий». Все права защищены.</p>
+        <p>Разработано в рамках лабораторной работы №5</p>
+    </footer>
+
+</body>
+</html>
